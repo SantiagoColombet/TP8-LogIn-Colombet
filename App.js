@@ -3,38 +3,22 @@ import { useState } from 'react';
 import { ImageBackground, Image, SafeAreaView, StyleSheet, Text, View, TextInput, Button, Pressable,TouchableOpacity, Alert} from 'react-native';
 
 export default function App() {
-  const img = require("./assets/icon.png")
-  const perfil = require("./assets/icon.png")
-
+  const img = require("./assets/back.png");
   const [valor, setValor] = useState();
   const [contrasena, setContrasena] = useState();
 
-  const [clase, setClase] = useState("verPerfil");
-  const cambiarClase = () => {
-    if(clase == "verPerfil"){
-      setClase("verPerfilNegro")
-    }else if(clase == "verPerfilNegro"){
-    setClase("verPerfil")
-    }
-  }
   
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.header}>
-        <StatusBar barStyle="light-content" backgroundColor="#8a2be2" />
-        <Text style={styles.headerText}>Login App (Apellido, Apellido)</Text>
+        <StatusBar backgroundColor="#8a2be2" />
+        <Text style={styles.headerText}>Login App Colombet</Text>
       </View>
       <View style={styles.container}>
         <Image 
-        source = {perfil}
+        source = {img}
         style = {styles.imagenPerfil}
         />
-        <Text style = {styles.text}>
-          Santiago Colombet
-        </Text>
-        <Text style = {styles.lightText}>
-          Backend Developer
-        </Text>
         <TextInput
           value={valor}
           onChangeText={text => setValor(text)}
@@ -51,11 +35,19 @@ export default function App() {
           secureTextEntry
         />
 
-        <Pressable onPress={cambiarClase}>
-          <Text style={clase === "verPerfilNegro" ? styles.verPerfilNegro : styles.verPerfil}>
+        <Pressable>
+          <Text style={styles.verPerfil}>
             Ver Perfil
           </Text>
         </Pressable>
+        <TouchableOpacity style={styles.textContainer}>
+          <Text style = {styles.text}>
+            ¿Olvidaste la clave?
+          </Text>
+          <Text style = {styles.lightText}>
+            Crear Cuenta
+          </Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -102,16 +94,16 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'black',
-    fontSize: 18,
+    fontSize: 16,
   },
   lightText: {
-    color: 'gray',
+    color: 'black',
     fontSize: 14,
   },
   imagenPerfil: {
-    borderRadius: 50, 
-    width: 100,
-    height: 100
+    width: '90%',
+    height: 200,
+    margin: '30'
   },
   textInput: {
     borderColor: 'gray',
@@ -122,7 +114,9 @@ const styles = StyleSheet.create({
     padding: 10,
     textAlignVertical: 'top', 
     backgroundColor: 'white',
-    borderColor: 'rgb(161, 119, 251)'
+    borderColor: 'rgb(161, 119, 251)',
+    marginBottom: '8'
+
   },
   contactarButton: {
     backgroundColor: 'aqua',
@@ -139,23 +133,20 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   verPerfil: {
-    borderColor: 'gray',
-    borderWidth: 1,
-    paddingVertical: 15,
-    paddingHorizontal: 40,
-    borderRadius: 10,
-    color: 'black',
+    
+    paddingVertical: 10,
+    paddingHorizontal: 145,
+    borderRadius: 5, 
+    backgroundColor: 'rgb(161, 119, 251)',
     textAlign: 'center',
     fontWeight: 'bold',
-  },
-  verPerfilNegro: {
-    backgroundColor: 'black',
-    borderWidth: 1,
-    paddingVertical: 15,
-    paddingHorizontal: 40,
-    borderRadius: 10,
+    fontSize: 16,
     color: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold',
+    borderColor: 'rgb(161, 119, 251)', 
+    borderWidth: 1, 
+  },
+  textContainer: {
+    display: 'flex',
+    alignItems: 'center'
   }
 });
